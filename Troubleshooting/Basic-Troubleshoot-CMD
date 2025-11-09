@@ -1,0 +1,42 @@
+===================================
+Troubleshooting On Juniper Routers
+===================================
+
+To check the status of interfaces and their details:
+----------------------------------------------------
+Amir@NTX-Test-1#run NTX-Test-1#show interfaces terse
+
+To view statistics for interfaces:
+----------------------------------
+Amir@NTX-Test-1#run NTX-Test-1#show interfaces extensive
+
+To check for interface errors:
+------------------------------
+Amir@NTX-Test-1#run NTX-Test-1#show interfaces extensive | match “error|CRC|input|output”
+
+To display the routing table:
+-----------------------------
+Amir@NTX-Test-1#run show route
+
+Amir@NTX-Test-1#run show ospf neighbor
+Amir@NTX-Test-1#run show ospf database
+Amir@NTX-Test-1#run show bgp summary
+
+To check the BGP neighbor configuration
+----------------------------------------
+Amir@NTX-Test-1#run show bgp neighbor 192.168.35.90
+
+To display the paths received from the BGP neighbor
+---------------------------------------------------
+Amir@NTX-Test-1#run show route receive-protocol bgp 192.168.35.90 terse
+
+To determine why a route entry received from the BGP neighbor is not active
+----------------------------------------------------------------------------
+Amir@NTX-Test-1#run show route 192.168.0.0/24 detail
+
+To display the routes advertised to the BGP neighbor
+-----------------------------------------------------
+Amir@NTX-Test-1#run show route advertising-protocol bgp 192.168.11.10
+
+Amir@NTX-Test-1>
+Amir@NTX-Test-1#
