@@ -47,10 +47,7 @@ It is ideal for network engineers managing enterprise or ISP networks.
 
 **Amir Hosan**  
 Network Engineer | Mir Info Systems Ltd.  
-🎓 B.Sc. in Computer Science & Engineering (Ongoing) – Northern University Bangladesh  
-📞 Phone: +880 1859-597000  
-📧 Email: [amirhosan1@outlook.com](mailto:amirhosan1@outlook.com)  
-📍 Address: Badda, Dhaka-1212, Bangladesh  
+🎓 B.Sc. in Computer Science & Engineering 
 🔗 [GitHub](https://github.com/Netronixbd) | [LinkedIn](https://linkedin.com/in/netronixbd)
 
 ---
