@@ -1,0 +1,118 @@
+###############################################
+# INTERFACE CONFIGURATION
+###############################################
+set logical-systems IIG-RT interfaces ae0 unit 3085 description "NTX-CCR-INT"
+set logical-systems IIG-RT interfaces ae0 unit 3085 vlan-id 3085
+set logical-systems IIG-RT interfaces ae0 unit 3085 family inet address 10.10.10.1/30
+
+set logical-systems GGC-RT interfaces ae0 unit 3086 description "NTX-CCR-GGC"
+set logical-systems GGC-RT interfaces ae0 unit 3086 vlan-id 3086
+set logical-systems GGC-RT interfaces ae0 unit 3086 family inet address 10.20.20.1/30
+
+set logical-systems FNA-RT interfaces ae0 unit 3087 description "NTX-CCR-FNA"
+set logical-systems FNA-RT interfaces ae0 unit 3087 vlan-id 3087
+set logical-systems FNA-RT interfaces ae0 unit 3087 family inet address 10.30.30.1/30
+
+set logical-systems CDN-RT interfaces ae0 unit 3089 description "NTX-CCR-CDN"
+set logical-systems CDN-RT interfaces ae0 unit 3089 vlan-id 3089
+set logical-systems CDN-RT interfaces ae0 unit 3089 family inet address 10.40.40.1/30
+
+set logical-systems BDIX-RT interfaces ae0 unit 3088 description "NTX-CCR-BDIX"
+set logical-systems BDIX-RT interfaces ae0 unit 3088 vlan-id 3088
+set logical-systems BDIX-RT interfaces ae0 unit 3088 family inet address 10.50.50.1/30
+
+
+###############################################
+# BGP CONFIGURATION + POLICY STATEMENTS
+###############################################
+
+### ---------- IIG-RT ----------
+set logical-systems IIG-RT protocols bgp group NTX-CCR neighbor 10.10.10.2 description "NTX-CCR-INT"
+set logical-systems IIG-RT protocols bgp group NTX-CCR neighbor 10.10.10.2 local-address 10.10.10.1
+set logical-systems IIG-RT protocols bgp group NTX-CCR neighbor 10.10.10.2 peer-as 65000
+set logical-systems IIG-RT protocols bgp group NTX-CCR neighbor 10.10.10.2 import NTX-CCR-INT-IN
+set logical-systems IIG-RT protocols bgp group NTX-CCR neighbor 10.10.10.2 export NTX-CCR-INT-OUT
+
+set logical-systems IIG-RT policy-options policy-statement NTX-CCR-INT-IN term 1 from route-filter 1.1.1.1/30 exact
+set logical-systems IIG-RT policy-options policy-statement NTX-CCR-INT-IN term 1 then accept
+set logical-systems IIG-RT policy-options policy-statement NTX-CCR-INT-IN term 100 then reject
+
+set logical-systems IIG-RT policy-options policy-statement NTX-CCR-INT-OUT term 1 from protocol direct
+set logical-systems IIG-RT policy-options policy-statement NTX-CCR-INT-OUT term 1 then accept
+set logical-systems IIG-RT policy-options policy-statement NTX-CCR-INT-OUT term 100 then reject
+
+
+### ---------- GGC-RT ----------
+set logical-systems GGC-RT protocols bgp group NTX-CCR neighbor 10.20.20.2 description "NTX-CCR-GGC"
+set logical-systems GGC-RT protocols bgp group NTX-CCR neighbor 10.20.20.2 local-address 10.20.20.1
+set logical-systems GGC-RT protocols bgp group NTX-CCR neighbor 10.20.20.2 peer-as 65000
+set logical-systems GGC-RT protocols bgp group NTX-CCR neighbor 10.20.20.2 import NTX-CCR-GGC-IN
+set logical-systems GGC-RT protocols bgp group NTX-CCR neighbor 10.20.20.2 export NTX-CCR-GGC-OUT
+
+set logical-systems GGC-RT policy-options policy-statement NTX-CCR-GGC-IN term 1 from route-filter 1.1.1.1/30 exact
+set logical-systems GGC-RT policy-options policy-statement NTX-CCR-GGC-IN term 1 then local-preference add 500
+set logical-systems GGC-RT policy-options policy-statement NTX-CCR-GGC-IN term 1 then accept
+set logical-systems GGC-RT policy-options policy-statement NTX-CCR-GGC-IN term 100 then reject
+
+set logical-systems GGC-RT policy-options policy-statement NTX-CCR-GGC-OUT term 1 from protocol direct
+set logical-systems GGC-RT policy-options policy-statement NTX-CCR-GGC-OUT term 1 then accept
+set logical-systems GGC-RT policy-options policy-statement NTX-CCR-GGC-OUT term 100 then reject
+
+
+### ---------- FNA-RT ----------
+set logical-systems FNA-RT protocols bgp group NTX-CCR neighbor 10.30.30.2 description "NTX-CCR-FNA"
+set logical-systems FNA-RT protocols bgp group NTX-CCR neighbor 10.30.30.2 local-address 10.30.30.1
+set logical-systems FNA-RT protocols bgp group NTX-CCR neighbor 10.30.30.2 peer-as 65000
+set logical-systems FNA-RT protocols bgp group NTX-CCR neighbor 10.30.30.2 import NTX-CCR-FNA-IN
+set logical-systems FNA-RT protocols bgp group NTX-CCR neighbor 10.30.30.2 export NTX-CCR-FNA-OUT
+
+set logical-systems FNA-RT policy-options policy-statement NTX-CCR-FNA-IN term 1 from route-filter 1.1.1.1/30 exact
+set logical-systems FNA-RT policy-options policy-statement NTX-CCR-FNA-IN term 1 then accept
+set logical-systems FNA-RT policy-options policy-statement NTX-CCR-FNA-IN term 100 then reject
+
+set logical-systems FNA-RT policy-options policy-statement NTX-CCR-FNA-OUT term 1 from protocol direct
+set logical-systems FNA-RT policy-options policy-statement NTX-CCR-FNA-OUT term 1 then accept
+set logical-systems FNA-RT policy-options policy-statement NTX-CCR-FNA-OUT term 100 then reject
+
+
+### ---------- CDN-RT ----------
+set logical-systems CDN-RT protocols bgp group NTX-CCR neighbor 10.40.40.2 description "NTX-CCR-CDN"
+set logical-systems CDN-RT protocols bgp group NTX-CCR neighbor 10.40.40.2 local-address 10.40.40.1
+set logical-systems CDN-RT protocols bgp group NTX-CCR neighbor 10.40.40.2 peer-as 65000
+set logical-systems CDN-RT protocols bgp group NTX-CCR neighbor 10.40.40.2 import NTX-CCR-CDN-IN
+set logical-systems CDN-RT protocols bgp group NTX-CCR neighbor 10.40.40.2 export NTX-CCR-CDN-OUT
+
+set logical-systems CDN-RT policy-options policy-statement NTX-CCR-CDN-IN term 1 from route-filter 1.1.1.1/30 exact
+set logical-systems CDN-RT policy-options policy-statement NTX-CCR-CDN-IN term 1 then accept
+set logical-systems CDN-RT policy-options policy-statement NTX-CCR-CDN-IN term 100 then reject
+
+set logical-systems CDN-RT policy-options policy-statement NTX-CCR-CDN-OUT term 1 from protocol direct
+set logical-systems CDN-RT policy-options policy-statement NTX-CCR-CDN-OUT term 1 then accept
+set logical-systems CDN-RT policy-options policy-statement NTX-CCR-CDN-OUT term 100 then reject
+
+
+### ---------- BDIX-RT ----------
+set logical-systems BDIX-RT protocols bgp group NTX-CCR neighbor 10.50.50.2 description "NTX-CCR-BDIX"
+set logical-systems BDIX-RT protocols bgp group NTX-CCR neighbor 10.50.50.2 local-address 10.50.50.1
+set logical-systems BDIX-RT protocols bgp group NTX-CCR neighbor 10.50.50.2 peer-as 65000
+set logical-systems BDIX-RT protocols bgp group NTX-CCR neighbor 10.50.50.2 import NTX-CCR-BDIX-IN
+set logical-systems BDIX-RT protocols bgp group NTX-CCR neighbor 10.50.50.2 export NTX-CCR-BDIX-OUT
+
+set logical-systems BDIX-RT policy-options policy-statement NTX-CCR-BDIX-IN term 1 from route-filter 1.1.1.1/30 exact
+set logical-systems BDIX-RT policy-options policy-statement NTX-CCR-BDIX-IN term 1 then accept
+set logical-systems BDIX-RT policy-options policy-statement NTX-CCR-BDIX-IN term 100 then reject
+
+set logical-systems BDIX-RT policy-options policy-statement NTX-CCR-BDIX-OUT term 1 from protocol direct
+set logical-systems BDIX-RT policy-options policy-statement NTX-CCR-BDIX-OUT term 1 then accept
+set logical-systems BDIX-RT policy-options policy-statement NTX-CCR-BDIX-OUT term 100 then reject
+
+
+
+ deactivate logical-systems MISL-RT policy-options policy-statement NTX-CCR-INT-IN term 1 from route-filter 1.1.1.1/30 exact
+ activate logical-systems MISL-RT policy-options policy-statement NTX-CCR-INT-IN term 1 from route-filter 1.1.1.1/30 exact
+ delete logical-systems MISL-RT policy-options policy-statement NTX-CCR-INT-IN term 1 from route-filter 1.1.1.1/30 exact
+ 
+ 
+ set logical-systems MISL-RT policy-options policy-statement NTX-CCR-INT-IN term 1 from route-filter 2.2.2.2/30 exact
+
+  policy-options policy-statement Biswas-Cable-INT-IN term 1 from route-filter 103.72.198.32/30 exact
