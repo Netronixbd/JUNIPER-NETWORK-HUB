@@ -26,105 +26,105 @@
 ## 🧱 VMX-CORE-1 Configuration
 
 ### Logical-System: INT-RT
-
+--------------------------
 ```bash
 set logical-systems INT-RT interfaces ge-0/0/3 unit 101 description "INT-ZONE-RT"
 set logical-systems INT-RT interfaces ge-0/0/3 unit 101 vlan-id 101
 set logical-systems INT-RT interfaces ge-0/0/3 unit 101 family inet address 10.0.1.1/30
 
-set logical-systems INT-RT protocols bgp group DOWNLINK type external
-set logical-systems INT-RT protocols bgp group DOWNLINK local-as 65001
-set logical-systems INT-RT protocols bgp group DOWNLINK neighbor 10.0.1.2 peer-as 65010
-set logical-systems INT-RT policy-options policy-statement EXPORT-DOWN term 1 from protocol direct
-set logical-systems INT-RT policy-options policy-statement EXPORT-DOWN term 1 then accept
-set logical-systems INT-RT protocols bgp group DOWNLINK export EXPORT-DOWN
+set logical-systems INT-RT protocols bgp group INT-EXT type external
+set logical-systems INT-RT protocols bgp group INT-EXT local-as 65001
+set logical-systems INT-RT protocols bgp group INT-EXT neighbor 10.0.1.2 peer-as 65010
+set logical-systems INT-RT policy-options policy-statement EXPORT-INT term 1 from protocol direct
+set logical-systems INT-RT policy-options policy-statement EXPORT-INT term 1 then accept
+set logical-systems INT-RT protocols bgp group INT-EXT export EXPORT-INT
 ```
 
 ### Logical-System: GGC-RT
-
+--------------------------
 ```bash
 set logical-systems GGC-RT interfaces ge-0/0/3 unit 102 description "GGC-ZONE-RT"
 set logical-systems GGC-RT interfaces ge-0/0/3 unit 102 vlan-id 102
 set logical-systems GGC-RT interfaces ge-0/0/3 unit 102 family inet address 10.0.2.1/30
 
-set logical-systems GGC-RT protocols bgp group DOWNLINK type external
-set logical-systems GGC-RT protocols bgp group DOWNLINK local-as 65001
-set logical-systems GGC-RT protocols bgp group DOWNLINK neighbor 10.0.2.2 peer-as 65010
-set logical-systems GGC-RT policy-options policy-statement EXPORT-DOWN term 1 from protocol direct
-set logical-systems GGC-RT policy-options policy-statement EXPORT-DOWN term 1 then accept
-set logical-systems GGC-RT protocols bgp group DOWNLINK export EXPORT-DOWN
+set logical-systems GGC-RT protocols bgp group GGC-EXT type external
+set logical-systems GGC-RT protocols bgp group GGC-EXT local-as 65001
+set logical-systems GGC-RT protocols bgp group GGC-EXT neighbor 10.0.2.2 peer-as 65010
+set logical-systems GGC-RT policy-options policy-statement EXPORT-GGC term 1 from protocol direct
+set logical-systems GGC-RT policy-options policy-statement EXPORT-GGC term 1 then accept
+set logical-systems GGC-RT protocols bgp group GGC-EXT export EXPORT-GGC
 ```
 
 ### Logical-System: FNA-RT
-
+--------------------------
 ```bash
 set logical-systems FNA-RT interfaces ge-0/0/3 unit 103 description "FNA-ZONE-RT"
 set logical-systems FNA-RT interfaces ge-0/0/3 unit 103 vlan-id 103
 set logical-systems FNA-RT interfaces ge-0/0/3 unit 103 family inet address 10.0.3.1/30
 
-set logical-systems FNA-RT protocols bgp group DOWNLINK type external
-set logical-systems FNA-RT protocols bgp group DOWNLINK local-as 65001
-set logical-systems FNA-RT protocols bgp group DOWNLINK neighbor 10.0.3.2 peer-as 65010
-set logical-systems FNA-RT policy-options policy-statement EXPORT-DOWN term 1 from protocol direct
-set logical-systems FNA-RT policy-options policy-statement EXPORT-DOWN term 1 then accept
-set logical-systems FNA-RT protocols bgp group DOWNLINK export EXPORT-DOWN
+set logical-systems FNA-RT protocols bgp group FNA-EXT type external
+set logical-systems FNA-RT protocols bgp group FNA-EXT local-as 65001
+set logical-systems FNA-RT protocols bgp group FNA-EXT neighbor 10.0.3.2 peer-as 65010
+set logical-systems FNA-RT policy-options policy-statement EXPORT-FNA term 1 from protocol direct
+set logical-systems FNA-RT policy-options policy-statement EXPORT-FNA term 1 then accept
+set logical-systems FNA-RT protocols bgp group FNA-EXT export EXPORT-FNA
 ```
 
 ---
 
 ## 🧱 VMX-CORE-2 Configuration
-
+===============================
 ### Logical-System: BDIX-RT
-
+---------------------------
 ```bash
 set logical-systems BDIX-RT interfaces ge-0/0/3 unit 104 description "BDIX-ZONE-RT"
 set logical-systems BDIX-RT interfaces ge-0/0/3 unit 104 vlan-id 104
 set logical-systems BDIX-RT interfaces ge-0/0/3 unit 104 family inet address 10.0.4.1/30
 
-set logical-systems BDIX-RT protocols bgp group DOWNLINK type external
-set logical-systems BDIX-RT protocols bgp group DOWNLINK local-as 65002
-set logical-systems BDIX-RT protocols bgp group DOWNLINK neighbor 10.0.4.2 peer-as 65010
-set logical-systems BDIX-RT policy-options policy-statement EXPORT-DOWN term 1 from protocol direct
-set logical-systems BDIX-RT policy-options policy-statement EXPORT-DOWN term 1 then accept
-set logical-systems BDIX-RT protocols bgp group DOWNLINK export EXPORT-DOWN
+set logical-systems BDIX-RT protocols bgp group BDIX-EXT type external
+set logical-systems BDIX-RT protocols bgp group BDIX-EXT local-as 65002
+set logical-systems BDIX-RT protocols bgp group BDIX-EXT neighbor 10.0.4.2 peer-as 65010
+set logical-systems BDIX-RT policy-options policy-statement EXPORT-BDIX term 1 from protocol direct
+set logical-systems BDIX-RT policy-options policy-statement EXPORT-BDIX term 1 then accept
+set logical-systems BDIX-RT protocols bgp group BDIX-EXT export EXPORT-BDIX
 ```
 
 ### Logical-System: CDN-RT
-
+--------------------------
 ```bash
 set logical-systems CDN-RT interfaces ge-0/0/3 unit 105 description "CDN-ZONE-RT"
 set logical-systems CDN-RT interfaces ge-0/0/3 unit 105 vlan-id 105
 set logical-systems CDN-RT interfaces ge-0/0/3 unit 105 family inet address 10.0.5.1/30
 
-set logical-systems CDN-RT protocols bgp group DOWNLINK type external
-set logical-systems CDN-RT protocols bgp group DOWNLINK local-as 65002
-set logical-systems CDN-RT protocols bgp group DOWNLINK neighbor 10.0.5.2 peer-as 65010
-set logical-systems CDN-RT policy-options policy-statement EXPORT-DOWN term 1 from protocol direct
-set logical-systems CDN-RT policy-options policy-statement EXPORT-DOWN term 1 then accept
-set logical-systems CDN-RT protocols bgp group DOWNLINK export EXPORT-DOWN
+set logical-systems CDN-RT protocols bgp group BDIX-EXT type external
+set logical-systems CDN-RT protocols bgp group BDIX-EXT local-as 65002
+set logical-systems CDN-RT protocols bgp group BDIX-EXT neighbor 10.0.5.2 peer-as 65010
+set logical-systems CDN-RT policy-options policy-statement EXPORT-BDIX term 1 from protocol direct
+set logical-systems CDN-RT policy-options policy-statement EXPORT-BDIX term 1 then accept
+set logical-systems CDN-RT protocols bgp group BDIX-EXT export EXPORT-BDIX
 ```
 
 ### Logical-System: BCDN-RT
-
+---------------------------
 ```bash
 set logical-systems BCDN-RT interfaces ge-0/0/3 unit 106 description "BCDN-ZONE-RT"
 set logical-systems BCDN-RT interfaces ge-0/0/3 unit 106 vlan-id 106
 set logical-systems BCDN-RT interfaces ge-0/0/3 unit 106 family inet address 10.0.6.1/30
 
-set logical-systems BCDN-RT protocols bgp group DOWNLINK type external
-set logical-systems BCDN-RT protocols bgp group DOWNLINK local-as 65002
-set logical-systems BCDN-RT protocols bgp group DOWNLINK neighbor 10.0.6.2 peer-as 65010
-set logical-systems BCDN-RT policy-options policy-statement EXPORT-DOWN term 1 from protocol direct
-set logical-systems BCDN-RT policy-options policy-statement EXPORT-DOWN term 1 then accept
-set logical-systems BCDN-RT protocols bgp group DOWNLINK export EXPORT-DOWN
+set logical-systems BCDN-RT protocols bgp group BCDN-EXT type external
+set logical-systems BCDN-RT protocols bgp group BCDN-EXT local-as 65002
+set logical-systems BCDN-RT protocols bgp group BCDN-EXT neighbor 10.0.6.2 peer-as 65010
+set logical-systems BCDN-RT policy-options policy-statement EXPORT-BCDN term 1 from protocol direct
+set logical-systems BCDN-RT policy-options policy-statement EXPORT-BCDN term 1 then accept
+set logical-systems BCDN-RT protocols bgp group BCDN-EXT export EXPORT-BCDN
 ```
 
 ---
 
 ## 🔗 Inter-Core OSPF Configuration
-
+====================================
 **CORE-1:**
-
+-----------
 ```bash
 set logical-systems CORE-RT interfaces ae0 unit 0 family inet address 10.255.0.1/30
 set logical-systems CORE-RT protocols ospf area 0.0.0.0 interface ae0.0
@@ -133,7 +133,7 @@ set logical-systems CORE-RT protocols ospf area 0.0.0.0 interface lo0.0 passive
 ```
 
 **CORE-2:**
-
+-----------
 ```bash
 set logical-systems CORE-RT interfaces ae0 unit 0 family inet address 10.255.0.2/30
 set logical-systems CORE-RT protocols ospf area 0.0.0.0 interface ae0.0
