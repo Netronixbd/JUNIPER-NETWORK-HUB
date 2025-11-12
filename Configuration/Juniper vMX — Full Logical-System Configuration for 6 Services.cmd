@@ -187,4 +187,73 @@ show ip route bgp
 
 ---
 
+===========================================================================================================================================================================================================================
+## 🧱 Cisco Router Full Configuration
+===========================================================================================================================================================================================================================
+
+hostname CISCO-DOWNLINK
+
+! Physical interface
+interface FastEthernet0/0
+ no shutdown
+!
+
+! Subinterfaces for each VLAN / service
+
+interface FastEthernet0/0.101
+encapsulation dot1Q 101
+description INT-RT-VLAN-101
+ip address 10.0.1.2 255.255.255.252
+
+interface FastEthernet0/0.102
+encapsulation dot1Q 102
+description GGC-RT-VLAN-102
+ip address 10.0.2.2 255.255.255.252
+
+interface FastEthernet0/0.103
+encapsulation dot1Q 103
+description FNA-RT-VLAN-103
+ip address 10.0.3.2 255.255.255.252
+
+interface FastEthernet0/0.104
+encapsulation dot1Q 104
+description BDIX-RT-VLAN-104
+ip address 10.0.4.2 255.255.255.252
+
+interface FastEthernet0/0.105
+encapsulation dot1Q 105
+description CDN-RT-VLAN-105
+ip address 10.0.5.2 255.255.255.252
+
+interface FastEthernet0/0.106
+encapsulation dot1Q 106
+description BCDN-RT-VLAN-106
+ip address 10.0.6.2 255.255.255.252
+!
+
+! BGP configuration
+router bgp 65010
+
+ ! Peers from CORE-1
+neighbor 10.0.1.1 remote-as 65001
+neighbor 10.0.2.1 remote-as 65001
+neighbor 10.0.3.1 remote-as 65001
+
+ ! Peers from CORE-2
+neighbor 10.0.4.1 remote-as 65002
+neighbor 10.0.5.1 remote-as 65002
+neighbor 10.0.6.1 remote-as 65002
+
+address-family ipv4
+neighbor 10.0.1.1 activate
+neighbor 10.0.2.1 activate
+neighbor 10.0.3.1 activate
+neighbor 10.0.4.1 activate
+neighbor 10.0.5.1 activate
+neighbor 10.0.6.1 activate
+exit-address-family
+
+! Optional: advertise local network
+network 203.0.113.0 mask 255.255.255.0
+
 This config is fully lab-ready — just copy-paste into EVE-NG or Junos CLI and commit.
