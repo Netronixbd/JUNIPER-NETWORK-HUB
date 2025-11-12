@@ -43,7 +43,7 @@ set logical-systems INT-RT protocols bgp group DOWNLINK export EXPORT-DOWN
 ### Logical-System: GGC-RT
 
 ```bash
-set logical-systems GGC-RT interfaces ge-0/0/3 unit 101 description "GGC-ZONE-RT"
+set logical-systems GGC-RT interfaces ge-0/0/3 unit 102 description "GGC-ZONE-RT"
 set logical-systems GGC-RT interfaces ge-0/0/3 unit 102 vlan-id 102
 set logical-systems GGC-RT interfaces ge-0/0/3 unit 102 family inet address 10.0.2.1/30
 
@@ -58,7 +58,7 @@ set logical-systems GGC-RT protocols bgp group DOWNLINK export EXPORT-DOWN
 ### Logical-System: FNA-RT
 
 ```bash
-set logical-systems FNA-RT interfaces ge-0/0/3 unit 101 description "FNA-ZONE-RT"
+set logical-systems FNA-RT interfaces ge-0/0/3 unit 103 description "FNA-ZONE-RT"
 set logical-systems FNA-RT interfaces ge-0/0/3 unit 103 vlan-id 103
 set logical-systems FNA-RT interfaces ge-0/0/3 unit 103 family inet address 10.0.3.1/30
 
@@ -77,7 +77,7 @@ set logical-systems FNA-RT protocols bgp group DOWNLINK export EXPORT-DOWN
 ### Logical-System: BDIX-RT
 
 ```bash
-set logical-systems BDIX-RT interfaces ge-0/0/3 unit 101 description "BDIX-ZONE-RT"
+set logical-systems BDIX-RT interfaces ge-0/0/3 unit 104 description "BDIX-ZONE-RT"
 set logical-systems BDIX-RT interfaces ge-0/0/3 unit 104 vlan-id 104
 set logical-systems BDIX-RT interfaces ge-0/0/3 unit 104 family inet address 10.0.4.1/30
 
@@ -92,7 +92,7 @@ set logical-systems BDIX-RT protocols bgp group DOWNLINK export EXPORT-DOWN
 ### Logical-System: CDN-RT
 
 ```bash
-set logical-systems CDN-RT interfaces ge-0/0/3 unit 101 description "CDN-ZONE-RT"
+set logical-systems CDN-RT interfaces ge-0/0/3 unit 105 description "CDN-ZONE-RT"
 set logical-systems CDN-RT interfaces ge-0/0/3 unit 105 vlan-id 105
 set logical-systems CDN-RT interfaces ge-0/0/3 unit 105 family inet address 10.0.5.1/30
 
@@ -107,7 +107,7 @@ set logical-systems CDN-RT protocols bgp group DOWNLINK export EXPORT-DOWN
 ### Logical-System: BCDN-RT
 
 ```bash
-set logical-systems BCDN-RT interfaces ge-0/0/3 unit 101 description "BCDN-ZONE-RT"
+set logical-systems BCDN-RT interfaces ge-0/0/3 unit 106 description "BCDN-ZONE-RT"
 set logical-systems BCDN-RT interfaces ge-0/0/3 unit 106 vlan-id 106
 set logical-systems BCDN-RT interfaces ge-0/0/3 unit 106 family inet address 10.0.6.1/30
 
