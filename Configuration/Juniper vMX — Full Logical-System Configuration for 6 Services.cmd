@@ -253,6 +253,14 @@ neighbor 10.0.5.1 activate
 neighbor 10.0.6.1 activate
 exit-address-family
 
+🔹 Cisco Loopback Configuration
+===============================
+! Create loopback interface
+interface Loopback0
+ description BGP Router-ID
+ ip address 192.168.255.1 255.255.255.255
+ no shutdown
+
 ! Optional: advertise local network
 network 203.0.113.0 mask 255.255.255.0
 
